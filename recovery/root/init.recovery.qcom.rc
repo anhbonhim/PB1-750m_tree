@@ -22,7 +22,7 @@ on fs
     setprop crypto.ready 1
     setprop ro.board.platform msm8937
 
-service sbinqseecomd /sbin/qseecomd
+service qseecomd /sbin/qseecomd
     user root
     group root
     disabled
@@ -62,14 +62,14 @@ service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
 
 
 on property:crypto.ready=0
-    stop sbinqseecomd
+    stop qseecomd
     stop gatekeeper-1-0
     stop hwservicemanager
     stop keystore
     stop servicemanager
 
 on property:crypto.ready=1
-    start sbinqseecomd
+    start qseecomd
 
 on property:sys.listeners.registered=true
     start hwservicemanager
